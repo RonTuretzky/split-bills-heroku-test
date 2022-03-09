@@ -30,7 +30,7 @@ class Signup extends Component {
       errors.phone_number = "your phone number is requierd.";
     }
 
-    if(account.phone_number.length != 10){
+    if(account.phone_number.length !== 10){
       errors.phone_number = "phone number is illegal. ";
     }
 

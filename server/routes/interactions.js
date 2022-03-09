@@ -17,10 +17,21 @@ router.post("/interact", async (req, res) => {
 		interaction.push({p2swipe:val}); 
         if(interaction.p2swipe === true && interaction.p1swipe === true){
             // MatchModel.create({User1.name.concat(User2.name)},{[{User1},{User2}]});//check if there is string concentation
-			let match = MatchModel.create({User1_name.concat(" - ".concat(User2_name))},{[{User1_id},{User2_id}]});
+			let title = User1_name.concat(" - ".concat(User2_name));
+			match = MatchModel.create({
+				name:title, 
+				members:[{_id:User1_id},{_id:User2_id}]
+			}
+
+			);	
 		} 
 	} else{
-        InteractionModel.create({User1,value,User2,null});
+        InteractionModel.create({
+			pair1:User1_id,
+			p1swipe:value,
+			pair2:User2_id,
+			p2swipe:null
+		});
     }
     
 

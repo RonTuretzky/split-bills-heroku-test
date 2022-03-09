@@ -9,6 +9,7 @@ const userSchema = new Schema({
 	password: { type: String, required: true },
 	profile: {type:String, required:true},
 	yeechor:{type:Boolean},
+	image: Buffer, 
 	matches: [{ type: mongoose.Schema.Types.ObjectId, ref: "Match" }],
 
 

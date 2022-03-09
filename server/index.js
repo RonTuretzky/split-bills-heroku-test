@@ -13,11 +13,13 @@ const PRODUCTION = process.env.NODE_ENV === 'production'
 
 mongoose
 	.connect(process.env.DB_URI, {
+
 		auth: {
 			username: process.env.DB_USER,
 			password: process.env.DB_PASSWORD,
 		},
 		useNewUrlParser: true,
+		useUnifiedTopology: true,
 	})
 	.then(() => console.log("connected to DB"));
 
@@ -29,7 +31,7 @@ if (PRODUCTION) {
 }
 app.use(express.json());
 app.use('/api/auth', authRouter);
-app.use('/api/interact', interactionRouter);
+app.use('/api/interact', jwtMiddleware, interactionRouter);
 app.use('/api/matches', jwtMiddleware, matchRouter);
 if (PRODUCTION) {
 	app.get('*', (req, res) => {

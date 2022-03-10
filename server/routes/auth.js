@@ -6,17 +6,20 @@ const UserModel = require("../models/User");
 const router = express.Router();
 
 router.post("/register", async (req, res) => {
-	const { name, gender, attract_to, email, password } = req.body;
+	const { name,profile_string,phone_number, email } = req.body;
 	let user = await UserModel.findOne({ email });
 	if (user !== null) {
 		return res.sendStatus(400);
 	}
 
-	user = await UserModel.create({ name, gender, attract_to, email, password });
-	console.log(user);
-	console.log("Creation of user model sucessfull");
-	ret = await UserModel.updateMany({},{$addToSet:{"relevant":user._id}});
-	console.log("Attempting to print ret:",ret);
+	user = await UserModel.create({
+		name:name,
+		phone:phone_number,
+		profile:profile_string,
+		email:email,
+		password:req.body.password 
+		});
+
 	const token = jwtHelper.sign(
 		{
 			userId: user._id,
@@ -29,7 +32,7 @@ router.post("/register", async (req, res) => {
 
 router.post("/login", async (req, res) => {
 	const { email, password } = req.body;
-	let user = await UserModel.findOne({ email, password });
+	let user = await UserModel.findOne({ email:email, password:password });
 	if (user === null) {
 		return res.sendStatus(400);
 	}

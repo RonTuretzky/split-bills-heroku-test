@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 class Signup extends Component {
   static contextType = AuthContext;
   state = {
-    account: { name: "",profile_pic: "", age:"",phone_number:"", email: "", password1: "", password2: "" },
+    account: { name: "",profile_pic: "",phone_number:"", email: "", password1: "", password2: "" },
     errors: {},
     apiError: null,
   };
@@ -17,14 +17,15 @@ class Signup extends Component {
     if (account.name.trim() === "") {
       errors.name = "Name is requierd.";
     }
-
-    if (account.profile_pic.trim() === "") {
-      errors.profile_pic = "profile picture is requierd.";
+    if (account.profile_string.trim() === "") {
+      errors.name = "Profile is requierd.";
     }
 
-    if (account.age.trim() === "") {
-      errors.age = "your age is requierd.";
-    }
+    // if (account.profile_pic.trim() === "") {
+    //   errors.profile_pic = "profile picture is requierd.";
+    // }
+
+
 
     if (account.phone_number.trim() === "") {
       errors.phone_number = "your phone number is requierd.";
@@ -55,12 +56,12 @@ class Signup extends Component {
 
   handleSubmit = async (e) => {
     e.preventDefault();
-    const { name, profile_pic,age,phone_number,email, password1 } = this.state.account;
+    const { name, profile_pic,profile_string ,phone_number,email, password1 } = this.state.account;
     const errors = this.validate();
     this.setState({ errors: errors || {} });
     if (errors) return;
     try {
-      await this.context.register(name,profile_pic,age,phone_number, email, password1);
+      await this.context.register(name,profile_string,phone_number, email, password1);
     } catch (err) {
       this.setState({
         apiError: "somthing went wrong- try filling all the fileds",
@@ -126,21 +127,6 @@ class Signup extends Component {
 
             <div className="form-match">
               <input
-                value={account.age}
-                onChange={this.handleChange}
-                type="text"
-                className="form-control"
-                id="age"
-                name="age"
-                placeholder="age *"
-              ></input>
-              {errors.age && (
-                <div className="alert alert-danger mt-2 p-0">{errors.age}</div>
-              )}
-            </div>
-
-            <div className="form-match">
-              <input
                 value={account.phone_number}
                 onChange={this.handleChange}
                 type="text"
@@ -153,7 +139,23 @@ class Signup extends Component {
                 <div className="alert alert-danger mt-2 p-0">{errors.phone_number}</div>
               )}
             </div>
+            
+            <div className="form-match">
+              <input
+                value={account.profile_string}
+                onChange={this.handleChange}
+                type="text"
+                className="form-control"
+                id="profile_string"
+                name="profile_string"
+                placeholder="Your profile *"
+              ></input>
+              {errors.profile_string && (
+                <div className="alert alert-danger mt-2 p-0">{errors.profile_string}</div>
+              )}
+            </div>
 
+            
             <div className="form-match">
               <input
                 value={account.email}

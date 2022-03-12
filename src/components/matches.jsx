@@ -43,18 +43,12 @@ class Matches extends Component {
 
 		return (
 			<div className="container">
-				<h4 className="text-center">Choose the match you would like to contact with</h4>
+				<h4 className="text-center">Matches</h4>
 				{this.state.matches.map((match, i) => (
-					<div className="card p-2 m-2 border-light border-rounded">
+					<div style={{maxWidth:"1000px",maxHeight:"75px"}} className="card p-2 m-2 border-light border-rounded" >
 						<label as='a' image>
-							{match.name}
+							{match.name}							{match.phone}
 						</label>
-						<div>
-							<button theme="pink" onClick={console.log}>
-								Show Number
-							</button>
-						</div>
-						<pre></pre>
 					</div>))
 				}
 			</div>

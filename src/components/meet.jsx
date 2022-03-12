@@ -49,16 +49,16 @@ class Meet extends Component {
 		}
 
 		return (
-			<div style={{display: 'flex',  justifyContent:'center', alignItems:'top', height: '100vh'}}>
-				<div className='cardContainer'>
+			<div style={{display: 'flex',  justifyContent:'center', alignItems:'top', height: '100vh',border:"none"}}>
+				<div className='cardContainer' style={{border:"none"}}>
 					{this.state.users.map((user) =>
-						<TinderCard className='swipe' key={user.name} onSwipe={(dir) => this.onSwipe(dir, user)}>
-							<div style={{ backgroundImage: 'url(' + this.getUserImage(user) + ')' }} className='card'>
+						<TinderCard className='swipe' key={user.name} onSwipe={(dir) => this.onSwipe(dir, user)} style={{border:"none"}}>
+							<div style={{ backgroundImage: 'url(' + this.getUserImage(user) + ')' ,border:"none"}} className='card' >
 							</div>
 							<div className="position-relative">
 								<div className="position-absolute top-0">
-								<div className="card" style={{ width: "18rem" }}>
-								<h3 align="right">{user.name}</h3>
+								<div className="card" style={{ width: "18rem",border:"none", }}>
+								<h6 align="right">{user.name}</h6>
 								<p align="right" >{user.profile}</p>
 								<p align="right"> {this.getYeechor()} = ?מייחר.ת </p>
 								</div>

@@ -61,7 +61,7 @@ class Signup extends Component {
     this.setState({ errors: errors || {} });
     if (errors) return;
     try {
-      await this.context.register(name,profile_string,phone_number, email, password1);
+      await this.context.register(name,profile_string,profile_pic,phone_number, email, password1);
     } catch (err) {
       this.setState({
         apiError: "somthing went wrong- try filling all the fileds",
@@ -83,7 +83,44 @@ class Signup extends Component {
     const account = { ...this.state.account };
     account[e.currentTarget.name] = e.currentTarget.value;
     this.setState({ account });
+    console.log(this.state)
   };
+  
+  handleChangePic=(e)=>{
+    let srcImg = "derp";
+    const comp = this; 
+    var img = document.querySelector('input[type=file]')['files'][0];
+    const promise = new Promise((resolve) => {
+      const reader = new FileReader();
+      reader.onload = function () {
+        resolve(reader.result);
+      }
+      reader.readAsDataURL(img);
+    });
+    
+    promise.then(img => {
+      comp.srcImg = img;
+      // console.log("srcimage:",srcImg)
+      console.log(img)
+      const account = { ...this.state.account };
+      account.profile_pic = img
+      this.setState({ account });
+    });
+    console.log(this.state)
+    
+    
+    // reader.onload = function () {
+    //     base64String = reader.result;
+    //     console.log("Functionlog:",base64String)
+    //     // const account = that.state.base64String;
+    //     // console.log(account);
+    //     // that.setState({profile_pic:base64String});
+    // }
+    // let raw = reader.readAsDataURL(file); 
+    // // console.log("outside func log:" ,base64String);
+   
+  };
+  
 
   render() {
     const { account, errors } = this.state;
@@ -111,8 +148,8 @@ class Signup extends Component {
             {/* girl - boy - other */}
             <div className="form-match">
               <input
-                value={account.profile_pic}
-                onChange={this.handleChange}
+                // value={account.profile_pic}
+                onChange={this.handleChangePic}
                 type="file"
                 className="form-control"
                 id="profile_pic"

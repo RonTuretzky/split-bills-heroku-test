@@ -4,6 +4,7 @@ import meetTelHaiService from "../services/meetTelHaiService";
 // import Datingcards from "../Datingcards/Datingcards"
 import { AuthContext } from "./../contexts/auth";
 import TinderCard from "react-tinder-card";
+import { Checkbox } from "@material-ui/core";
 
 class Meet extends Component {
 	static contextType = AuthContext;
@@ -18,10 +19,19 @@ class Meet extends Component {
 	getUserImage(user) {
 
 		if (user.image) {
+			
 			return user.image
 		}
 		return `https://robohash.org/${user._id}`
 
+	}
+	getYeechor(){
+		if(this.state.yeechor){
+			return "✅";
+		}
+		else{
+			return "❎";
+		}
 	}
 	onSwipe = async (direction, user) => {
 		console.log({ direction, user })
@@ -39,13 +49,23 @@ class Meet extends Component {
 		}
 
 		return (
-			<div>
+			<div style={{display: 'flex',  justifyContent:'center', alignItems:'top', height: '100vh'}}>
 				<div className='cardContainer'>
 					{this.state.users.map((user) =>
 						<TinderCard className='swipe' key={user.name} onSwipe={(dir) => this.onSwipe(dir, user)}>
 							<div style={{ backgroundImage: 'url(' + this.getUserImage(user) + ')' }} className='card'>
-								<h3>{user.name}</h3>
 							</div>
+							<div className="position-relative">
+								<div className="position-absolute top-0">
+								<div className="card" style={{ width: "18rem" }}>
+								<h3 align="right">{user.name}</h3>
+								<p align="right" >{user.profile}</p>
+								<p align="right"> {this.getYeechor()} = ?מייחר.ת </p>
+								</div>
+								</div>
+								
+							</div>
+							
 						</TinderCard>
 					)}
 				</div>

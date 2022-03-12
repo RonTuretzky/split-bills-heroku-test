@@ -9,7 +9,7 @@ const userSchema = new Schema({
 	password: { type: String, required: true, select: false },
 	profile: { type: String, required: false },
 	yeechor: { type: Boolean },
-	image: { type: Buffer, required: false },
+	image: { type: String, required: false },
 });
 
 module.exports = mongoose.model("User", userSchema);

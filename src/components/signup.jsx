@@ -15,40 +15,40 @@ class Signup extends Component {
     const { account } = this.state;
 
     if (account.name.trim() === "") {
-      errors.name = "Name is requierd.";
+      errors.name = "שם דרוש";
     }
     if (account.profile_string.trim() === "") {
-      errors.name = "Profile is requierd.";
+      errors.name = "פרופיל דרוש";
     }
 
-    // if (account.profile_pic.trim() === "") {
-    //   errors.profile_pic = "profile picture is requierd.";
-    // }
+    if (account.profile_pic.trim() === "") {
+      errors.profile_pic = "דרושה תמונת פרופיל";
+    }
 
 
 
     if (account.phone_number.trim() === "") {
-      errors.phone_number = "your phone number is requierd.";
+      errors.phone_number = "מספר טלפון דרוש";
     }
 
     if(account.phone_number.length !== 10){
-      errors.phone_number = "phone number is illegal. ";
+      errors.phone_number = "הוזן מספר טלפון לא חוקי";
     }
 
     if (account.email.trim() === "") {
-      errors.email = "email is requierd.";
+      errors.email = "אימייל דרוש";
     }
 
     if (account.password1.trim() === "") {
-      errors.password1 = "Password is requierd.";
+      errors.password1 = "סיסמא דרושה";
     } else if (!this.isStrongPassword(account.password1.trim())) {
-      errors.password1 = "Password is weak";
+      errors.password1 = "סיסמא חלשה";
     }
 
     if (account.password2.trim() === "") {
-      errors.password2 = "Password validation is requierd.";
+      errors.password2 = "אנא הקש סיסמא שנית.";
     } else if (account.password1.trim() !== account.password2.trim()) {
-      errors.password2 = "Password do not match.";
+      errors.password2 = "הסיסמאות לא תואמות";
     }
 
     return Object.keys(errors).length === 0 ? null : errors;
@@ -64,7 +64,7 @@ class Signup extends Component {
       await this.context.register(name,profile_string,profile_pic,phone_number, email, password1);
     } catch (err) {
       this.setState({
-        apiError: "somthing went wrong- try filling all the fileds",
+        apiError: "משהו השתבש, נסו שוב",
       });
       console.log(err);
       return;
@@ -74,7 +74,7 @@ class Signup extends Component {
 
   isStrongPassword(password) {
     let regex =
-      /^(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z])[a-zA-Z0-9!@#$%^&*]{8,20}$/;
+      /^(?=.*[0-9])(?=.*)(?=.*[a-z])(?=.*[A-Z])[a-zA-Z0-9]{6,20}$/;
 
     return regex.test(password);
   }
@@ -100,7 +100,6 @@ class Signup extends Component {
     
     promise.then(img => {
       comp.srcImg = img;
-      // console.log("srcimage:",srcImg)
       console.log(img)
       const account = { ...this.state.account };
       account.profile_pic = img
@@ -108,16 +107,6 @@ class Signup extends Component {
     });
     console.log(this.state)
     
-    
-    // reader.onload = function () {
-    //     base64String = reader.result;
-    //     console.log("Functionlog:",base64String)
-    //     // const account = that.state.base64String;
-    //     // console.log(account);
-    //     // that.setState({profile_pic:base64String});
-    // }
-    // let raw = reader.readAsDataURL(file); 
-    // // console.log("outside func log:" ,base64String);
    
   };
   
@@ -128,7 +117,7 @@ class Signup extends Component {
       <div className="row pt-5">
         <div className="col-12 offset-md-4 col-md-4 mt-1 justify-content-center">
           <form
-            className="py-1 border rounded p-2 bg-danger"
+            className="py-1 border rounded p-2 bg-success"
             onSubmit={this.handleSubmit}
           >
             <div className="form-match">
@@ -139,13 +128,13 @@ class Signup extends Component {
                 className="form-control"
                 id="name"
                 name="name"
-                placeholder="Name *"
+                placeholder="*שם"
               ></input>
               {errors.name && (
                 <div className="alert alert-danger mt-2 p-0">{errors.name}</div>
               )}
             </div>
-            {/* girl - boy - other */}
+            <p class="text-white">תמונה</p>
             <div className="form-match">
               <input
                 // value={account.profile_pic}
@@ -170,7 +159,7 @@ class Signup extends Component {
                 className="form-control"
                 id="phone_number"
                 name="phone_number"
-                placeholder="phone number *"
+                placeholder="*מספר טלפון"
               ></input>
               {errors.phone_number && (
                 <div className="alert alert-danger mt-2 p-0">{errors.phone_number}</div>
@@ -178,15 +167,16 @@ class Signup extends Component {
             </div>
             
             <div className="form-match">
-              <input
+              <textarea
                 value={account.profile_string}
                 onChange={this.handleChange}
                 type="text"
                 className="form-control"
                 id="profile_string"
                 name="profile_string"
-                placeholder="Your profile *"
-              ></input>
+                placeholder=" הפרופיל שלך: פרטים אישיים עלייך
+                אנא לציין כאן העדפה לקשר חברי\העדפה מינית במידת הצורך"
+              ></textarea>
               {errors.profile_string && (
                 <div className="alert alert-danger mt-2 p-0">{errors.profile_string}</div>
               )}
@@ -201,7 +191,7 @@ class Signup extends Component {
                 className="form-control"
                 id="email"
                 name="email"
-                placeholder="Email *"
+                placeholder="*אימייל"
               ></input>
               {errors.email && (
                 <div className="alert alert-danger mt-2 p-0">
@@ -217,7 +207,7 @@ class Signup extends Component {
                 className="form-control"
                 id="password"
                 name="password1"
-                placeholder="Password *"
+                placeholder="*סיסמא"
               ></input>
               {/* explain password rules */}
               <button
@@ -225,9 +215,8 @@ class Signup extends Component {
                 className="btn btn-secondary"
                 data-toggle="tooltip"
                 data-placement="top"
-                title=" Your password must be 8-20 characters long, contain
-                        lowercase and uppercase letters, numbers and special
-                        characters."
+                title=" הסיסמא צריכה להיות בין 6-20 תווים באנגלית, עם לפחות תו
+                גדול אחד,ומספר "
               >
                 ?
               </button>
@@ -245,7 +234,7 @@ class Signup extends Component {
                 className="form-control"
                 id="password2"
                 name="password2"
-                placeholder="Re type password *"
+                placeholder="*הקש.י סיסמא שוב"
               ></input>
               {errors.password2 && (
                 <div className="alert alert-danger mt-2 p-0">
@@ -256,20 +245,20 @@ class Signup extends Component {
             <button
               type="submit"
               id="button-submit"
-              className="btn btn-secondary"
+              className="btn btn-success border"
             >
-              Register
+              הרשמה
             </button>
             {errors.password2 && (
               <div className="alert alert-danger mt-2 p-0">
                 {errors.password2}
               </div>
             )}
-            <p className="small mt-2 mb-1">
-              already have a user?
-              <Link to="/login" className="text-white ">
+            <p className="small mt-2 mb-1 text-white">
+              כבר יש לך משתמש?
+              <Link to="/login" className="text-white border">
                 {" "}
-                Login
+                התחברות
               </Link>
             </p>
             {this.state.apiError && (

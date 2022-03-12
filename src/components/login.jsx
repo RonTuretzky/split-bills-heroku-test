@@ -35,7 +35,7 @@ class Login extends Component {
       await this.context.login(email, password);
     } catch (err) {
       this.setState({
-        apiError: "somthing went wrong- try filling all the fileds",
+        apiError: "משהו השתבש, נסו שנית",
       });
       console.log(err);
       return;
@@ -57,7 +57,7 @@ class Login extends Component {
       <div className="row pt-5">
         <div className="col-12 offset-md-4 col-md-4 mt-1 justify-content-center">
           <form
-            className="py-1 border rounded p-2 bg-danger"
+            className="py-1 border rounded p-2 bg-success"
             onSubmit={this.handleSubmit}
           >
             <div className="form-match">
@@ -68,7 +68,7 @@ class Login extends Component {
                 className="form-control"
                 id="email"
                 name="email"
-                placeholder="Email *"
+                placeholder="* אימייל"
               ></input>
               {errors.email && (
                 <div className="alert alert-danger mt-2 p-0">
@@ -84,7 +84,7 @@ class Login extends Component {
                 className="form-control"
                 id="password"
                 name="password"
-                placeholder="Password *"
+                placeholder="* סיסמא"
               ></input>
               {errors.password && (
                 <div className="alert alert-danger mt-2 p-0">
@@ -92,18 +92,19 @@ class Login extends Component {
                 </div>
               )}
             </div>
+            <br></br>
             <button
               type="submit"
               id="button-submit"
-              className="btn btn-secondary"
+              className="btn btn-success border"
             >
-              Login
+              התחברות
             </button>
             <p className="small mt-2 mb-1">
-              don't have a user?
-              <Link to="/signup" className="text-white ">
+              אין לך משתמש?
+              <Link to="/signup" className="text-white border">
                 {" "}
-                register
+                הרשמה 
               </Link>
             </p>
             {this.state.apiError && (

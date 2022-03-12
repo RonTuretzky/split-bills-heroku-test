@@ -11,33 +11,33 @@ class NavBar extends Component {
 
   render() {
     return (
-      <nav className="navbar navbar-expand navbar-dark text-light bg-dark -sm">
+      <nav className="navbar navbar-expand navbar-dark text-light bg-success -sm">
         <div className="container">
           <NavLink className="navbar-brand" to="/">
-            MeetTelHai
+            Meet-תל-חי
           </NavLink>
           {/*rander next code only of there is a current user*/}
           {this.context.currentUser && (
             <NavLink className="navbar-brand" to="/matches">
-              My Matches
+              לדבר
             </NavLink>
           )}
           {this.context.currentUser && (
             <NavLink className="navbar-brand" to="/meet">
-              Meet
+              לפגוש
             </NavLink>
           )}
           {this.context.currentUser && (
             <div className="d-flex ml-auto">
               <span className="navbar-text mx-2">
-                Hello {this.context.currentUser.userName}
+                 {this.context.currentUser.userName} שלום
               </span>
               <div>
                 <button
-                  className="btn btn-dark my-2 my-sm-0 "
+                  className="btn btn-success my-2 my-sm-0 "
                   onClick={this.handleLogOut} //add redirect to home when logout
                 >
-                  sign out
+                  התנתק
                 </button>
               </div>
             </div>
@@ -45,7 +45,7 @@ class NavBar extends Component {
           {/*rander next code only of there isn't a current user*/}
           {!this.context.currentUser && (
             <NavLink className="navbar-brand" to="/login">
-              Login
+              התחברות
             </NavLink>
           )}
         </div>

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { AuthContext } from "../contexts/auth";
 import meetTelHaiService from "../services/meetTelHaiService";
+import yeechor from './yeechor.jpg';
 
 class Matches extends Component {
 	static contextType = AuthContext;
@@ -16,6 +17,7 @@ class Matches extends Component {
 			this.setState(err);
 		}
 	}
+	
 	setStateOfMatches = () => {
 		console.log("remounting");
 		this.componentDidMount();
@@ -31,16 +33,19 @@ class Matches extends Component {
 
 		if (this.state.matches.length === 0) {
 			return (
-				<div className="row h-100 bg-danger">
+				<div className="row h-100 bg-success">
 					<div className="container">
-						<h4 className="text-center">You still don't have any match
-							<br></br>
-							Click on "Meet" to make some</h4>
+						<br></br>
+						<br></br>
+						<br></br>
+						<h4 className="text-center text-white">!עדיין לא פגשת</h4>
+						
 					</div>
+
+					
 				</div>
 			);
 		}
-
 		return (
 			<div className="container">
 				<h4 className="text-center">Matches</h4>
@@ -48,6 +53,8 @@ class Matches extends Component {
 					<div style={{maxWidth:"1000px",maxHeight:"75px"}} className="card p-2 m-2 border-light border-rounded" >
 						<label as='a' image>
 							{match.name}							{match.phone}
+							<br></br>
+							 {match.name ? "✅" : "❎"}=מייחר.ת?
 						</label>
 					</div>))
 				}
@@ -57,3 +64,5 @@ class Matches extends Component {
 	}
 }
 export default Matches;
+
+

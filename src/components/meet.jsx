@@ -49,7 +49,13 @@ class Meet extends Component {
 		}
 
 		return (
-			<div style={{display: 'flex',  justifyContent:'center', alignItems:'top', height: '100vh',border:"none"}}>
+		<div>
+			<br></br>
+			<br></br>
+			<p align="center">◀ימינה לדבר , שמאלה פחות▶</p>
+			<br></br>
+			<br></br>
+			<div style={{display: 'flex',  justifyContent:'center', alignItems:'top', height: '80vh',border:"none"}}>
 				<div className='cardContainer' style={{border:"none"}}>
 					{this.state.users.map((user) =>
 						<TinderCard className='swipe' key={user.name} onSwipe={(dir) => this.onSwipe(dir, user)} style={{border:"none"}}>
@@ -60,6 +66,10 @@ class Meet extends Component {
 								<div className="card" style={{ width: "18rem",border:"none", }}>
 								<h6 align="right">{user.name}</h6>
 								<p align="right" >{user.profile}</p>
+								<br></br>
+								<br></br>
+								<br></br>
+								<br></br>
 								<p align="right"> {this.getYeechor()} = ?מייחר.ת </p>
 								</div>
 								</div>
@@ -69,25 +79,9 @@ class Meet extends Component {
 						</TinderCard>
 					)}
 				</div>
-
-
-				{/* <div className="position-relative ">
-					{
-						this.state.users.map(user => (<div className="position-absolute top-0">
-							<div className="card" style={{ width: "18rem" }}>
-								<img className="card-img-top" src={this.getUserImage(user)} alt="hi" />
-								<div className="card-body">
-									<div></div>
-									<p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-								</div>
-								<pre>{JSON.stringify(user, null, 2)}</pre>
-							</div>
-						</div>)
-						)
-					}
-				</div> */}
 			</div >
-			// <Datingcards />
+			
+			</div>
 		);
 	}
 }

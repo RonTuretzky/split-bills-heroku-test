@@ -1,7 +1,6 @@
 require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
-const matchRouter = require("./routes/matches");
 const authRouter = require("./routes/auth");
 const interactionRouter = require("./routes/interactions");
 const path = require('path');
@@ -32,7 +31,6 @@ if (PRODUCTION) {
 app.use(express.json());
 app.use('/api/auth', authRouter);
 app.use('/api/interact', jwtMiddleware, interactionRouter);
-app.use('/api/matches', jwtMiddleware, matchRouter);
 if (PRODUCTION) {
 	app.get('*', (req, res) => {
 		res.sendFile(path.resolve('build/index.html'));

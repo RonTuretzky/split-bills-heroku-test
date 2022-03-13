@@ -1,16 +1,14 @@
 const express = require("express");
-
 const UserModel = require("../models/User");
 const mongoose = require('mongoose')
 const LikeModel = require('../models/like')
-
-
 const router = express.Router();
+
+
 
 router.post("/interact", async (req, res) => {
 	const from = req.user.userId;
 	const { to, like } = req.body;
-	// TODO :  validate input 
 	if (from === to) {
 		res.sendStatus(400);
 	}

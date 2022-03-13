@@ -2,9 +2,9 @@ import React from "react";
 import axios from "axios";
 import jwt from "jsonwebtoken";
 
-const TOKEN_KEY = "jwt-token";
+const TOKEN_KEY = "jwt-token"; 
 
-// Attach JWT to axios
+//Client side interface with db api
 axios.interceptors.request.use(config => {
 	const token = localStorage.getItem(TOKEN_KEY)
 	if (token) {
@@ -19,7 +19,6 @@ export const AuthContext = React.createContext();
 export class AuthProvider extends React.Component {
 	state = {
 		currentUser: null,
-		//loading: false,
 	};
 	constructor(props) {
 		super(props);

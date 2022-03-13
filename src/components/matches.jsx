@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { AuthContext } from "../contexts/auth";
 import meetTelHaiService from "../services/meetTelHaiService";
-import yeechor from './yeechor.jpg';
 
 class Matches extends Component {
 	static contextType = AuthContext;
@@ -9,7 +8,7 @@ class Matches extends Component {
 		matches: null,
 		error: null
 	};
-	async componentDidMount() {
+	async componentDidMount() { //We fetch all available matches from handler, to present their data
 		try {
 			const { data } = await meetTelHaiService.allMatches();
 			this.setState({ matches: data });

@@ -1,6 +1,9 @@
 const express = require("express");
 const jwtHelper = require("jsonwebtoken");
-const UserModel = require("../models/User");
+const UserModel = require("../models/User"); //API interface to receive registration and login. 
+											 // We use mongoose to leverage the usermodels 
+											 //Directly connected to the mongodb to make query
+											 // and creation calls.
 
 
 const router = express.Router();

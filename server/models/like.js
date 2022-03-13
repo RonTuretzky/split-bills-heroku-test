@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require("mongoose"); //Schema for identifiying users who have matched with one another
 const { Schema } = mongoose;
 
 const likeSchema = new Schema({

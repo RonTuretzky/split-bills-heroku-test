@@ -1,10 +1,8 @@
 import React, { Component } from "react";
 
 import meetTelHaiService from "../services/meetTelHaiService";
-// import Datingcards from "../Datingcards/Datingcards"
 import { AuthContext } from "./../contexts/auth";
 import TinderCard from "react-tinder-card";
-import { Checkbox } from "@material-ui/core";
 
 class Meet extends Component {
 	static contextType = AuthContext;
@@ -13,7 +11,7 @@ class Meet extends Component {
 		error: null
 	};
 	async componentDidMount() {
-		const { data } = await meetTelHaiService.available();
+		const { data } = await meetTelHaiService.available(); // we fetch all unliked/undisliked users
 		this.setState({ users: data });
 	}
 	getUserImage(user) {
@@ -34,7 +32,6 @@ class Meet extends Component {
 		}
 	}
 	onSwipe = async (direction, user) => {
-		console.log({ direction, user })
 		await meetTelHaiService.like(direction === "right", user._id)
 	}
 	render() {

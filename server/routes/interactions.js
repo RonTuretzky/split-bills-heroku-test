@@ -2,7 +2,13 @@ const express = require("express");
 const UserModel = require("../models/User");
 const mongoose = require('mongoose')
 const LikeModel = require('../models/like')
-const router = express.Router();
+const router = express.Router();		//Router leverging mongoose to user models to add 
+										// instances of liking/disliking. 
+										//Interact creates a "Like" db instance
+										// Match fetches all users who current user has liked 
+										// and have liked back 
+										//Available fetches all user with no existing like/dislike 
+										//from current user
 
 
 

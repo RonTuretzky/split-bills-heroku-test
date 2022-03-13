@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require("mongoose"); //Schema representing the user with needed data
 
 const { Schema } = mongoose;
 

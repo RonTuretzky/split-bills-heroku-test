@@ -83,7 +83,6 @@ class Signup extends Component {
     const account = { ...this.state.account };
     account[e.currentTarget.name] = e.currentTarget.value;
     this.setState({ account });
-    console.log(this.state)
   };
   
   handleChangePic=(e)=>{
@@ -100,12 +99,10 @@ class Signup extends Component {
     
     promise.then(img => {
       comp.srcImg = img;
-      console.log(img)
       const account = { ...this.state.account };
       account.profile_pic = img
       this.setState({ account });
     });
-    console.log(this.state)
     
    
   };

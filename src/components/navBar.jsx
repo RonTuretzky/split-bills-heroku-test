@@ -16,7 +16,6 @@ class NavBar extends Component {
           <NavLink className="navbar-brand" to="/">
             Meet-תל-חי
           </NavLink>
-          {/*rander next code only of there is a current user*/}
           {this.context.currentUser && (
             <NavLink className="navbar-brand" to="/matches">
               לדבר
@@ -35,14 +34,13 @@ class NavBar extends Component {
               <div>
                 <button
                   className="btn btn-success my-2 my-sm-0 "
-                  onClick={this.handleLogOut} //add redirect to home when logout
+                  onClick={this.handleLogOut} 
                 >
                   התנתק
                 </button>
               </div>
             </div>
           )}
-          {/*rander next code only of there isn't a current user*/}
           {!this.context.currentUser && (
             <NavLink className="navbar-brand" to="/login">
               התחברות

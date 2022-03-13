@@ -44,6 +44,9 @@ export class AuthProvider extends React.Component {
 		axios.defaults.headers.Authorization = undefined;
 		this.setState({ currentUser: null });
 	}
+	delete = async () =>{
+		const {data }= await axios.post("/api/auth/delete",{});	
+	};
 	getUserFromLocalStorage() {
 		const token = localStorage.getItem(TOKEN_KEY);
 		if (!token) {

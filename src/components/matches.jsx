@@ -16,6 +16,16 @@ class Matches extends Component {
 			this.setState(err);
 		}
 	}
+	handleSubmit = async (e) => {
+		e.preventDefault();
+		try{
+			await this.contextType.delete();
+		}
+		catch (e){
+			console.log(e)
+		}
+		this.props.history.push("/"); 
+	  };
 	
 	setStateOfMatches = () => {
 		console.log("remounting");
@@ -33,6 +43,18 @@ class Matches extends Component {
 		if (this.state.matches.length === 0) {
 			return (
 				<div className="row h-100 bg-success">
+					<form
+        				className=" bg-success"
+            			onSubmit={this.handleSubmit}>
+						<button
+              				type="submit"
+              				id="button-submit"
+              				className="btn btn-success border "
+            				>
+              				מחיקת חשבון
+            			</button>
+					</form>
+
 					<div className="container">
 						<br></br>
 						<br></br>

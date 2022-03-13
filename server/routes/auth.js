@@ -33,7 +33,11 @@ router.post("/register", async (req, res) => {
 	);
 	res.send({ token });
 });
-
+router.post("/delete", async (req, res) => {
+	const currentUser = req.user.userId;
+	let ret = await UserModel.deleteOne({currentUser})
+	res.sendStatus(200);
+});
 router.post("/login", async (req, res) => {
 	const { email, password } = req.body;
 	let user = await UserModel.findOne({ email:email, password:password });

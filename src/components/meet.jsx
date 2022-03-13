@@ -24,6 +24,7 @@ class Meet extends Component {
 
 	}
 	getYeechor(){
+		console.log("Current user:",this.state.name,"Yeechor:",this.state.yeechor)
 		if(this.state.yeechor){
 			return "✅";
 		}
@@ -67,7 +68,7 @@ class Meet extends Component {
 								<br></br>
 								<br></br>
 								<br></br>
-								<p align="right"> {this.getYeechor()} = ?מייחר.ת </p>
+								<p align="right"> {user.yeechor ? "✅" : "❎" } = ?מייחר.ת </p>
 								</div>
 								</div>
 								

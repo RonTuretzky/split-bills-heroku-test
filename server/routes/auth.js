@@ -9,7 +9,7 @@ const UserModel = require("../models/User"); //API interface to receive registra
 const router = express.Router();
 
 router.post("/register", async (req, res) => {
-	const {name,profile_string,profile_pic_storage,phone_number, email } = req.body;
+	const {name, profile_pic_storage,profile_string,phone_number,email } = req.body;
 	let user = await UserModel.findOne({ email });
 	if (user !== null) {
 		return res.sendStatus(400);
@@ -20,7 +20,8 @@ router.post("/register", async (req, res) => {
 		profile:profile_string,
 		email:email,
 		password:req.body.password,
-		image:profile_pic_storage
+		image:profile_pic_storage,
+		yeechor:req.body.yeechor
 		});
 
 	const token = jwtHelper.sign(

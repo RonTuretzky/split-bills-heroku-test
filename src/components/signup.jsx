@@ -56,12 +56,12 @@ class Signup extends Component {
 
   handleSubmit = async (e) => {
     e.preventDefault();
-    const { name, profile_pic,profile_string ,phone_number,email, password1 } = this.state.account;
+    const { name, profile_pic,profile_string ,yeechor,phone_number,email, password1 ,password2} = this.state.account;
     const errors = this.validate();
     this.setState({ errors: errors || {} });
     if (errors) return;
     try {
-      await this.context.register(name,profile_string,profile_pic,phone_number, email, password1);
+      await this.context.register(name, profile_pic,profile_string ,yeechor,phone_number,email, password1);
     } catch (err) {
       this.setState({
         apiError: "משהו השתבש, נסו שוב",
@@ -78,7 +78,12 @@ class Signup extends Component {
 
     return regex.test(password);
   }
-
+  handleChangeyeechor = (e) => {
+    let value = e.currentTarget.checked
+    const account = { ...this.state.account };
+    account['yeechor']=value; 
+    this.setState({ account });
+  };
   handleChange = (e) => {
     const account = { ...this.state.account };
     account[e.currentTarget.name] = e.currentTarget.value;
@@ -178,8 +183,24 @@ class Signup extends Component {
                 <div className="alert alert-danger mt-2 p-0">{errors.profile_string}</div>
               )}
             </div>
+            <div className="form-match">
+              <label>
+             <input 
+             type="checkbox"
+             checked = {account.yeechor}
+             onChange={this.handleChangeyeechor}
+             >
+             
+             </input>
+             ?מייחר.ת
+              </label>
 
-            
+              
+              
+              {errors.yeechor && (
+                <div className="alert alert-danger mt-2 p-0">{errors.yeechor}</div>
+              )}
+            </div>
             <div className="form-match">
               <input
                 value={account.email}

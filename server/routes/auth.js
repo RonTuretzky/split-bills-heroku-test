@@ -14,7 +14,6 @@ router.post("/register", async (req, res) => {
 	if (user !== null) {
 		return res.sendStatus(400);
 	}
-	console.log("profile_URL",profile_pic_storage);
 	user = await UserModel.create({
 		name:name,
 		phone:phone_number,
